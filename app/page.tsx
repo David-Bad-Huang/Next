@@ -1,8 +1,14 @@
 import Image from "next/image";
+import LogoutButton from "./logout-button";
+
+// Cache Components 下该版本的 PPR 动态洞运行时填充存在问题（构建通过但内容不补），
+// 故声明为阻塞渲染路由，直接在服务端读取会话。
+export const instant = false;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="relative flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <LogoutButton />
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert h-5 w-[100px]"
@@ -52,7 +58,7 @@ export default function Home() {
               width={16}
               height={14}
             />
-            Deploy Now
+            现在部署
           </a>
           <a
             className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
